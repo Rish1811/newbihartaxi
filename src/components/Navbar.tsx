@@ -8,7 +8,7 @@ const navLinks = [
   { label: "About Us", to: "/aboutus" },
   { label: "Driver", to: "#" },
   { label: "User", to: "#" },
-  { label: "Contact", to: "#" },
+  { label: "Contact", to: "/contact" },
 ];
 
 const Navbar = () => {
