@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -10,14 +11,14 @@ const Footer = () => {
           viewport={{ once: true }}
           className="flex flex-col md:flex-row items-center justify-between gap-4"
         >
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-md bg-primary flex items-center justify-center">
+          <Link to="/" className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-md bg-primary flex items-center justify-center glow-primary-sm">
               <span className="text-primary-foreground font-bold text-sm">B</span>
             </div>
             <span className="font-bold text-foreground">
               Bihar<span className="text-primary">Taxi</span>
             </span>
-          </div>
+          </Link>
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} BiharTaxi. All rights reserved.
           </p>

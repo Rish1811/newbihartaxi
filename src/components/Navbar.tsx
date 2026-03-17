@@ -1,11 +1,19 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
-const navLinks = ["Home", "About Us", "Driver", "User", "Contact"];
+const navLinks = [
+  { label: "Home", to: "/" },
+  { label: "About Us", to: "/aboutus" },
+  { label: "Driver", to: "#" },
+  { label: "User", to: "#" },
+  { label: "Contact", to: "#" },
+];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
 
   return (
     <motion.nav
@@ -15,34 +23,43 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-50 glass border-b border-border/50"
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-4">
-        <a href="/" className="flex items-center gap-2">
-          <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+        <Link to="/" className="flex items-center gap-2">
+          <motion.div
+            whileHover={{ rotate: 5, scale: 1.05 }}
+            className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center glow-primary-sm"
+          >
             <span className="text-primary-foreground font-bold text-lg">B</span>
-          </div>
+          </motion.div>
           <span className="text-xl font-bold text-foreground">
             Bihar<span className="text-primary">Taxi</span>
           </span>
-        </a>
+        </Link>
 
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
-              key={link}
-              href="#"
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-200"
+            <Link
+              key={link.label}
+              to={link.to}
+              className={`text-sm font-medium transition-colors duration-200 ${
+                location.pathname === link.to
+                  ? "text-primary"
+                  : "text-muted-foreground hover:text-primary"
+              }`}
             >
-              {link}
-            </a>
+              {link.label}
+            </Link>
           ))}
         </div>
 
         <div className="flex items-center gap-3">
-          <a
+          <motion.a
             href="#"
-            className="hidden md:inline-flex items-center px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-semibold text-sm transition-all hover:brightness-110 active:scale-95"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="hidden md:inline-flex items-center px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-semibold text-sm transition-all glow-primary-sm hover:glow-primary"
           >
             Book Now
-          </a>
+          </motion.a>
           <button
             onClick={() => setOpen(!open)}
             className="md:hidden p-2 rounded-lg hover:bg-secondary transition-colors"
@@ -62,13 +79,18 @@ const Navbar = () => {
           >
             <div className="container mx-auto py-4 px-4 flex flex-col gap-3">
               {navLinks.map((link) => (
-                <a
-                  key={link}
-                  href="#"
-                  className="text-sm font-medium text-muted-foreground hover:text-primary py-2 transition-colors"
+                <Link
+                  key={link.label}
+                  to={link.to}
+                  onClick={() => setOpen(false)}
+                  className={`text-sm font-medium py-2 transition-colors ${
+                    location.pathname === link.to
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-primary"
+                  }`}
                 >
-                  {link}
-                </a>
+                  {link.label}
+                </Link>
               ))}
               <a
                 href="#"
