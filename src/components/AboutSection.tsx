@@ -10,14 +10,16 @@ const stats = [
 
 const AboutSection = () => {
   return (
-    <section className="py-24 bg-surface">
-      <div className="container mx-auto px-4">
+    <section className="py-24 bg-surface relative overflow-hidden">
+      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
+
+      <div className="container mx-auto px-4 relative">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.2, 0, 0, 1] }}
+            transition={{ duration: 0.7, ease: [0.2, 0, 0, 1] }}
             className="relative"
           >
             <div className="absolute -inset-4 bg-gradient-to-tr from-primary/10 to-transparent rounded-3xl" />
@@ -26,13 +28,18 @@ const AboutSection = () => {
               alt="The Company"
               className="relative w-full rounded-2xl"
             />
+            <motion.div
+              animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
+              transition={{ duration: 3, repeat: Infinity }}
+              className="absolute -top-3 -right-3 w-6 h-6 rounded-full bg-primary glow-primary-sm"
+            />
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.2, 0, 0, 1] }}
+            transition={{ duration: 0.7, ease: [0.2, 0, 0, 1] }}
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">
               About
@@ -52,9 +59,10 @@ const AboutSection = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.2 + i * 0.1 }}
-                  className="flex items-center gap-3 p-4 rounded-2xl shadow-card bg-card"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  className="flex items-center gap-3 p-4 rounded-2xl shadow-card bg-card border border-border hover:border-glow hover:shadow-card-hover transition-all duration-300"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center shrink-0">
                     <s.icon size={18} className="text-primary" />
                   </div>
                   <span className="text-sm font-medium text-foreground">{s.label}</span>
