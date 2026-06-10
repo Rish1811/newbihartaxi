@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Play, Apple } from "lucide-react";
+import heroBg from "@/assets/hero-bg.jpg";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -11,10 +12,25 @@ const fadeInUp = {
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-background to-background" />
-      <div className="absolute top-20 right-0 w-[600px] h-[600px] rounded-full bg-primary/5 blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-primary/3 blur-3xl" />
+      {/* Background image */}
+      <motion.div
+        initial={{ scale: 1.1, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 2, ease: "easeOut" }}
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/60 to-background" />
+      <motion.div
+        animate={{ opacity: [0.3, 0.6, 0.3] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-20 right-0 w-[600px] h-[600px] rounded-full bg-primary/10 blur-3xl"
+      />
+      <motion.div
+        animate={{ opacity: [0.2, 0.5, 0.2] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-primary/10 blur-3xl"
+      />
       
       {/* Animated particles */}
       {[...Array(8)].map((_, i) => (
